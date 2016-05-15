@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 try:
 	#for Python2
 	from Tkinter import *
 except ImportError:
 	#for Python3
 	from tkinter import *
-	
+
 import random
 
 class Application(Frame):
@@ -27,8 +28,11 @@ class Application(Frame):
 
 	
 	def display_message(self, text): #displays  text in the output_box
+
+		self.output_box.config(state=NORMAL)
 		self.output_box.delete(0.0, END)
 		self.output_box.insert(0.0, text)
+		self.output_box.config(state=DISABLED)
 
 	def show_inventory(self): #creates window with inventory
 
@@ -38,7 +42,9 @@ class Application(Frame):
 		self.output_box_inventory = Text(self.inventory_window, width = 50, height = 10, wrap = WORD)
 		self.output_box_inventory.pack()
 		text = "Examing your belongings you see that you have: (nothing for now)"
+		self.output_box_inventory.config(state=NORMAL)
 		self.output_box_inventory.insert(0.0, text)
+		self.output_box_inventory.config(state=DISABLED)
 
 	def show_statistics(self): #creates window with stats
 
@@ -92,7 +98,9 @@ class Application(Frame):
 		
 		text = "You are known as " + self.my_hero.name + ". You are a " + self.my_hero.hero_class + ". " + str(hero_attribute_description)
 
+		self.output_box_statistics.config(state=NORMAL)
 		self.output_box_statistics.insert(0.0, text)
+		self.output_box_statistics.config(state=DISABLED)
 
 	def button(self, action): #top left button with multiple purposes defined in the method
 
@@ -165,8 +173,10 @@ class Application(Frame):
 	def choose_class_message(self):#displays description of selected class
 		message = self.choose_class.get()
 
+		self.output_box_class.config(state=NORMAL)
 		self.output_box_class.delete(0.0, END)
-		self.output_box_class.insert(0.0, message) 
+		self.output_box_class.insert(0.0, message)
+		self.output_box_class.config(state=DISABLED) 
 
 	def get_name(self):#checking if name inserted
 		name = self.name_entry.get()
